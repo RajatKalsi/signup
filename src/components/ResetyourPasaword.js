@@ -31,9 +31,7 @@ function ResetyourPasaword() {
     return (
         <form className='form-control' onSubmit={(e) => { e.preventDefault(); Resetpassword() }}>
             <div>
-
                 <div className="container d-flex justify-content-center align-items-center" style={{ height: "600px" }}>
-
                     <div className="row" style={{ height: "350px", width: "450px" }}>
                         <div className='col-12'>
                             <img src={img} alt="" />
@@ -41,7 +39,6 @@ function ResetyourPasaword() {
                         <div className='row'>
                             <h5>Reset your Password ?</h5>
                         </div>
-
                         <div className="">
                             <input type="password" className="form-control mt-1" placeholder="Old Password" name="old" value={password.old} onChange={PasswordChange} required />
                         </div>
@@ -51,9 +48,7 @@ function ResetyourPasaword() {
                         <div>
                             <input type="submit" className=" form-control btn btn-danger mt-2 w-100 rounded " data-bs-dismiss="modal" value="Submit" />
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </form>

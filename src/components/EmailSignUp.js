@@ -5,8 +5,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function EmailSignUp() {
-    let emailvalid = document.getElementById("emailvalid")
-    let span = document.getElementById("span")
+    // let emailvalid = document.getElementById("emailvalid")
+    // let span = document.getElementById("span")
     const [showpassword, setShowpassword] = useState(true);
 
     const [signup, setSignup] = useState({
@@ -83,23 +83,17 @@ function EmailSignUp() {
                     mobile: "",
                     email: "",
                     password: "",
-
                 })
-
                 document.getElementById("span1").style.display = "none"
                 document.getElementById("span2").style.display = "none"
-
             }
             else {
                 alert("Data is not right")
             }
-
         }
         catch {
             console.log("error")
         }
-
-
     }
     const Emailverification = async () => {
 
@@ -113,7 +107,6 @@ function EmailSignUp() {
                             <img src={img} alt="" />
                         </div>
                         <div className=' row mt-4'>
-                            {/* <div type="button" className=" col-3 mt-2 me-5" data-bs-dismiss="modal"><i className="bi bi-arrow-left" style={{ width: "150px" }} data-bs-dismiss="modal"></i></div> */}
                             <div className='col-4 m-auto'><h4 className=''>Sign-Up</h4></div>
                         </div>
                         <div className="position-relative mb-1 mt-4">
@@ -126,7 +119,6 @@ function EmailSignUp() {
                             <i className="position bi bi-envelope"></i>
                             <span className='text-start' id="span1"></span>
                         </div>
-
                         <div className="position-relative mb-1 mt-1">
                             <input type={showpassword ? "password" : "text"} className="form-control" placeholder="Password" name="password" value={signup.password} onChange={(e) => { InputChange(e); onPassword() }} required />
                             <i className={showpassword ? "position bi bi-eye-fill" : "position bi bi-eye-slash-fill"} onClick={Checkpassword}></i>

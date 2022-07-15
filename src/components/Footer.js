@@ -2,8 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-
-        <div className="container-fluid mt-5 d-flex justify-content-center align-items-end" style={{ height: "400px" }} >
+        <div className="container-fluid mt-5 d-flex justify-content-center align-items-end" style={{ height: "400px" }} id="footer">
             <div className="bg-danger mt-5 text-center d-flex justify-content-center align-items-center w-100" style={{ height: "250px" }}>
                 <div>
                     <div className="row">
@@ -29,7 +28,6 @@ function Footer() {
                 </div>
             </div>
         </div>
-
     )
 }
 

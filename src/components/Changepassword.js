@@ -1,11 +1,18 @@
+import { click } from '@testing-library/user-event/dist/click'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './index.css'
 
 const Changepassword = () => {
+    const navigate = useNavigate(null)
     const [changepassword, setChangepassword] = useState({
         old_password: "",
         new_password: ""
     })
+    const [showpassword, setShowpassword] = useState(true)
+    const [shownewpassword, setShownewpassword] = useState(true)
+
 
     const url = "http://139.59.47.49:4004/api/account/change/password"
     const PasswordChange = (e) => {
@@ -35,11 +42,21 @@ const Changepassword = () => {
                 new_password: ""
             })
 
+            navigate("/modal")
+            document.getElementById("footer").style.display = "none"
         }
         catch {
             alert("Please enter correct old password")
         }
+
     }
+    const Checkpassword = () => {
+        showpassword ? setShowpassword(false) : setShowpassword(true)
+    }
+    const Checknewpassword = () => {
+        shownewpassword ? setShownewpassword(false) : setShownewpassword(true)
+    }
+
     return (
         <div className='container-fluid'>
             <div className="row shadow">
@@ -70,15 +87,24 @@ const Changepassword = () => {
                 <div className='shadow p-3' style={{ width: "700px" }}>
                     <label>Old Password</label>
                     <br></br>
-                    <input type="text" onChange={PasswordChange} className='w-50' name="old_password" value={changepassword.old_password} />
-                    <br></br>
+                    <div className='position-relative'>
+                        <input type={showpassword ? "password" : "text"} onChange={PasswordChange} className='w-50' name="old_password" value={changepassword.old_password} />
+                        <i className={showpassword ? "position2 bi bi-eye-fill" : "position2 bi bi-eye-slash-fill"} onClick={Checkpassword}></i>
+                        <i className="bi bi-5-circle-fill"></i>
+                    </div>
+
                     <br></br>
                     <label>New Password</label>
                     <br></br>
-                    <input type="text" className='w-50' value={changepassword.new_password} name="new_password" onChange={PasswordChange} />
+                    <div className='position-relative'>
+                        <input type={shownewpassword ? "password" : "text"} onChange={PasswordChange} className='w-50' name="new_password" value={changepassword.new_password} />
+                        <i className={shownewpassword ? "position2 bi bi-eye-fill" : "position2 bi bi-eye-slash-fill"} onClick={Checknewpassword}></i>
+                        <i className="bi bi-5-circle-fill"></i>
+                    </div>
+
                     <br></br>
                     <br></br>
-                    <button className='btn btn-danger' onClick={onPasswordChange}>Update Password</button>
+                    <button className='btn btn-danger' onClick={onPasswordChange} data-bs-toggle="modal" data-bs-target="#myModal6">Update Password</button>
                 </div>
             </div>
         </div>

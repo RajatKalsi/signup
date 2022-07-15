@@ -5,7 +5,7 @@ import './SignIn.css'
 import { Link } from 'react-router-dom';
 
 function PhoneSingin() {
-    const [showpassword, setShowpassword] = useState(true)
+
     const [signupwithphone, setSignupwithphone] = useState({
         code: "",
         mobile: ""
@@ -17,9 +17,11 @@ function PhoneSingin() {
         input3: "",
         input4: "",
     })
-    const Checkpassword = () => {
-        showpassword ? setShowpassword(false) : setShowpassword(true)
-    }
+    const [otpinput1, setOtpinput1] = useState(null);
+    const [otpinput2, setOtpinput2] = useState(null)
+    const [otpinput3, setOtpinput3] = useState(null)
+    const [otpinput4, setOtpinput4] = useState(null)
+
     const CodemobileChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -29,10 +31,7 @@ function PhoneSingin() {
             [name]: value
         })
     }
-    let token;
-
     const PhoneSign = async () => {
-
         try {
 
             if (signupwithphone.code !== "" && signupwithphone.mobile !== "") {
@@ -43,9 +42,6 @@ function PhoneSingin() {
 
                 })
                 localStorage.setItem("number", res.data.profile.mobile_number)
-                // console.log(res.data.token)
-                // localStorage.token = res.data.token
-                // localStorage.setItem("token", res.data.token)
             }
 
             else if (signupwithphone.code === "" || signupwithphone.mobile === "") {
@@ -53,7 +49,6 @@ function PhoneSingin() {
             }
         }
         catch {
-
             console.log("error")
         }
         setSignupwithphone({
@@ -63,7 +58,6 @@ function PhoneSingin() {
         console.log(localStorage.getItem("number"))
         setComplete(false)
     }
-    var id = document.getElementsByTagName('input')
 
     const onSend = () => {
         setOtp({
@@ -76,7 +70,6 @@ function PhoneSingin() {
     const OtpChange = (e) => {
         setOtp(e.target.value)
     }
-
     let inputRef = useRef(null)
     let inputRef1 = useRef(null)
     let inputRef2 = useRef(null)
@@ -89,7 +82,6 @@ function PhoneSingin() {
         else {
             inputRef.current.focus()
         }
-
     }
     const onClick1 = (value) => {
         if (value) {
@@ -115,12 +107,10 @@ function PhoneSingin() {
         }
     }
 
-
-
     const Otpverified = async () => {
         let res = await axios.post("http://139.59.47.49:4004/api/account/verify/otp", {
             mobile_number: localStorage.getItem("number"),
-            otp: otp
+            otp: `${otpinput1}${otpinput2}${otpinput3}${otpinput4}`
         })
         console.log()
         setOtp({
@@ -130,8 +120,6 @@ function PhoneSingin() {
             input4: "",
         })
     }
-
-
     return (
         <>
             <div className=''>
@@ -175,10 +163,10 @@ function PhoneSingin() {
                                 <h5 className='mt-3'>Enter he code just send to</h5>
                                 <h6 className='mt-2'>{signupwithphone.mobile}</h6>
                                 <div className='row mt-4'>
-                                    <input ref={inputRef} autoFocus className='col-3 border border-2 ms-4 text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick(e.target.value) }} maxLength="1" name="input1" value={otp.input1} style={{ height: "80px", width: "80px" }} />
-                                    <input ref={inputRef1} className='col-3 border border-2 ms-4  text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick1(e.target.value) }} maxLength="1" name="input2" value={otp.input2} style={{ height: "80px", width: "80px" }} />
-                                    <input ref={inputRef2} className='col-3 border border-2 ms-4  text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick2(e.target.value) }} maxLength="1" name="input3" value={otp.input3} style={{ height: "80px", width: "80px" }} />
-                                    <input ref={inputRef3} className='col-3 border border-2 ms-4 text-center d-flex justify-content-center align-items-center' maxLength="1" onChange={(e) => { setComplete(true); setOtp(e.target.value); onClick3(e.target.value) }} name="input4" value={otp.input4} style={{ height: "80px", width: "80px" }} />
+                                    <input ref={inputRef} autoFocus className='col-3 border border-2 ms-4 text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick(e.target.value); setOtpinput1(e.target.value) }} maxLength="1" name="input1" value={otpinput1} style={{ height: "80px", width: "80px" }} />
+                                    <input ref={inputRef1} className='col-3 border border-2 ms-4  text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick1(e.target.value); setOtpinput2(e.target.value) }} maxLength="1" name="input2" value={otpinput2} style={{ height: "80px", width: "80px" }} />
+                                    <input ref={inputRef2} className='col-3 border border-2 ms-4  text-center d-flex justify-content-center align-items-center' onChange={(e) => { setComplete(false); setOtp(e.target.value); onClick2(e.target.value); setOtpinput3(e.target.value) }} maxLength="1" name="input3" value={otpinput3} style={{ height: "80px", width: "80px" }} />
+                                    <input ref={inputRef3} className='col-3 border border-2 ms-4 text-center d-flex justify-content-center align-items-center' maxLength="1" onChange={(e) => { setComplete(true); setOtp(e.target.value); onClick3(e.target.value); setOtpinput4(e.target.value) }} name="input4" value={otpinput4} style={{ height: "80px", width: "80px" }} />
                                     {
                                         complete ? <i className="bi bi-check-lg col-3 border border-2 ms-auto bg-success text-center d-flex justify-content-center align-items-center mt-2"></i> : ""
                                     }

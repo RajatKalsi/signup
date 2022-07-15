@@ -7,8 +7,6 @@ import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import { useState } from 'react';
 import axios from 'axios';
-import Home from './Home';
-
 
 
 const Index = () => {
@@ -24,13 +22,11 @@ const Index = () => {
     const responseGoogle = (res) => {
 
     }
-
     const responseGoogleFail = (res) => {
         console.log(res)
     }
     return (
         <>
-
             <div className="container d-flex justify-content-center align-items-center" style={{ height: "650px" }}>
                 <div className="row color" style={{ height: "430px", width: "500px" }}>
                     <div className="p-3">
@@ -51,10 +47,7 @@ const Index = () => {
                         </div>
                         <br></br>
                         <div>
-                            <div className='mt-3 npm start'
-                            // data-bs-toggle="modal"
-                            //  data-bs-target="#myModal"
-                            >
+                            <div className='mt-3 npm start' >
                                 <FacebookLogin
                                     appId="1157651755102562"
                                     autoLoad={false}
@@ -83,7 +76,6 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="modal" id="myModal17">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -97,7 +89,6 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </>
     )

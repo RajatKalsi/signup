@@ -2,11 +2,40 @@ import React, { useState } from 'react'
 import img3 from '../images/off.png'
 import img5 from '../images/on.png'
 import './SignIn.css';
-function Notification() {
+function Notifications() {
     const [shownotification, setShownotification] = useState(true)
 
     const Notificationshow = () => {
         shownotification ? setShownotification(false) : setShownotification(true)
+    }
+    const Notify = () => {
+        let permission = Notification.permission;
+        if (permission === "granted") {
+            showNotification();
+        } else if (permission === "default") {
+            requestAndShowPermission();
+        } else {
+            alert("Use normal alert");
+        }
+        function requestAndShowPermission() {
+            Notification.requestPermission(function (permission) {
+                if (permission === "granted") {
+                    showNotification();
+                }
+            });
+        }
+        function showNotification() {
+            let title = "This website is more useful for you";
+            let icon = 'https://homepages.cae.wisc.edu/~ece533/images/zelda.png';
+            let body = "Allow to send notification send by this website";
+
+            let notification = new Notification(title, { body, icon });
+
+            notification.onclick = () => {
+                notification.close();
+                window.parent.focus();
+            }
+        }
     }
     return (
         <div className='container-fluid'>
@@ -37,15 +66,12 @@ function Notification() {
                     </div>
                     <div className='col-3 mt-2 me-5'>
                         {
-                            shownotification ? <i><img src={img3} alt="" height="30px" className='notification' data-bs-toggle="modal" data-bs-target="#myModal" onClick={Notificationshow} /></i>
+                            shownotification ? <i><img src={img3} alt="" height="30px" className='notification' onClick={() => { Notificationshow(); Notify() }} /></i>
                                 : <i><img src={img5} alt="" height="30px" className='notification' onClick={Notificationshow} /></i>
                         }
-
                     </div>
                 </div>
-
                 {/* modal  */}
-
             </div>
             <div className="modal" id="myModal">
                 <div className="modal-dialog">
@@ -63,4 +89,4 @@ function Notification() {
     )
 }
 
-export default Notification;
+export default Notifications;

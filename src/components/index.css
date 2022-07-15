@@ -44,3 +44,10 @@
 .decoration {
     text-decoration: none;
 }
+
+.position2 {
+    position: absolute;
+    /* left: 120px; */
+    bottom: 3px;
+    right: 180px
+}

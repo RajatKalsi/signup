@@ -11,11 +11,9 @@ function ForgottenPassword() {
         })
         setForgot("");
     }
-
     return (
         <div>
             <div>
-
                 <form onSubmit={(e) => { e.preventDefault(); forgotpassword(); }}>
                     <div className="container d-flex justify-content-center align-items-center" style={{ height: "500px", width: "450px" }}>
                         <div className="row">
@@ -35,15 +33,11 @@ function ForgottenPassword() {
                                 </div>
                             </div>
                             <input type="submit" className="btn btn-danger w-100 rounded mb-1 mt-3" value="Send Link" />
-
                         </div>
                     </div>
                 </form>
             </div>
-
         </div >
-
-
     )
 }
 

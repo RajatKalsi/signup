@@ -2,13 +2,9 @@ import React from 'react';
 import img from './logo.png';
 
 function FinishingSignUp() {
-    
-    return (
 
+    return (
         <div>
-            {/* <button className='btn btn-primary mb-5' data-bs-toggle="modal" data-bs-target="#myModal5">check it</button> */}
-            {/* <div className="modal" id="myModal5">
-                <div className="modal-dialog"> */}
             <div className="container d-flex justify-content-center align-items-center">
                 <div className="row" style={{ height: "400px", width: "500px" }}>
                     <div className='col-12'>
@@ -27,9 +23,6 @@ function FinishingSignUp() {
                 </div>
             </div>
         </div>
-        //     </div>
-
-        // </div>
     )
 }
 
