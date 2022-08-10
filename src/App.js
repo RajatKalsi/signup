@@ -22,7 +22,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="*" element={
-            <Layout>
+            <Layout name={
               <Routes>
                 <Route path='/' element={<Index />} />
                 <Route path='/signinin/emailsignup' element={<EmailSignUp />} />
@@ -37,6 +37,7 @@ function App() {
                 <Route path="/personalinformation" element={<PersonalInformation />} />
                 <Route path="/modal" element={<Modals />} />
               </Routes>
+            }>
             </Layout>} />
 
           <Route path="/otpverifiedmodal" element={<OtpVerifiedModal />} />

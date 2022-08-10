@@ -1,11 +1,11 @@
 import Footer from "./Footer"
-import Welcomeback from "./SignInin";
-// import Welcomeback from "./SignInin";
 
-const Layout = ({ anyvalue }) => {
+
+
+const Layout = ({ name }) => {
     return (
         <>
-            <div>{anyvalue}</div>
+            <div>{name}</div>
             <Footer />
         </>
     )

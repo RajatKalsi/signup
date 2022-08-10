@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import img from './logo.png';
 import './SignIn.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function EmailSignUp() {
     // let emailvalid = document.getElementById("emailvalid")
@@ -15,7 +15,7 @@ function EmailSignUp() {
         password: "",
 
     })
-
+    const navigate = useNavigate(null)
     const InputChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
